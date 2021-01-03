@@ -48,7 +48,7 @@ public class VetorTest {
   }
 
   @Test
-  void deveRetornaUmNovoVetorComOsElementosQueCorrespondamABusca() {
+  void deveRetornarUmNovoVetorComOsElementosQueCorrespondamABusca() {
     Vetor vetor = new Vetor(6);
 
     try {
@@ -73,7 +73,7 @@ public class VetorTest {
   }
 
   @Test
-  void deveRetornaUmaExceptionSeNenhumElementoForEncontrado() {
+  void deveRetornarUmaExceptionSeNenhumElementoForEncontrado() {
     Vetor vetor = new Vetor(6);
 
     try {
@@ -97,7 +97,7 @@ public class VetorTest {
   }
 
   @Test
-  void deveRetornaTrueSeOElementoForEncontrado() {
+  void deveRetornarTrueSeOElementoForEncontrado() {
     Vetor vetor = new Vetor(6);
 
     try {
@@ -115,6 +115,30 @@ public class VetorTest {
     boolean result = vetor.exists("Akuma");
 
     assertTrue(result);
+
+  }
+
+  @Test
+  void deveAdicionarUmElementoAUmaDeterminadaPosicaoDoVetor() {
+    Vetor vetor = new Vetor(10);
+
+    try {
+      vetor.add("Ryu");
+      vetor.add("Ken");
+      vetor.add("Chun-li");
+      vetor.add("Akuma");
+      vetor.add("Laura");
+
+      vetor.add("Cammy", 2);
+      vetor.add("Bison", 4);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      assertEquals(e.getMessage(), "Você tentou exceder a capacidade do vetor");
+    }
+    assertEquals("Ryu", vetor.get(0));
+    assertEquals("Cammy", vetor.get(2));
+    assertEquals("Bison", vetor.get(4));
+    assertEquals("Laura", vetor.get(6));
 
   }
 

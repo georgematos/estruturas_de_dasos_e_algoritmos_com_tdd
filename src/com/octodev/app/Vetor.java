@@ -22,6 +22,7 @@ public class Vetor {
 
   /**
    * Retorna o numero de elementos adicionados no array
+   * 
    * @return int
    */
   public int size() {
@@ -30,6 +31,7 @@ public class Vetor {
 
   /**
    * Retorna o tamanho do array
+   * 
    * @return int
    */
   public int length() {
@@ -37,12 +39,12 @@ public class Vetor {
   }
 
   public String[] find(String text) throws IllegalArgumentException {
-    
+
     String[] result = new String[size];
     int founded = 0;
 
     for (int i = 0; i < size; i++) {
-      if(elementos[i].contains(text)) {
+      if (elementos[i].contains(text)) {
         result[founded] = elementos[i];
         founded++;
       }
@@ -51,16 +53,31 @@ public class Vetor {
       throw new IllegalArgumentException("Nenhum elemento foi encontrado");
 
     return Arrays.copyOf(result, founded);
-  
+
   }
 
   public boolean exists(String text) {
     for (int i = 0; i < size; i++) {
-      if(elementos[i].equals(text)) {
+      if (elementos[i].equals(text)) {
         return true;
       }
     }
     return false;
+  }
+
+  public String get(int position) {
+    return elementos[position];
+  }
+
+  public void add(String elemento, int position) {
+    if (position < 0 || position > elementos.length)
+      throw new IllegalArgumentException("A posição requerida está fora dos limites do vetor");
+    
+    for (int i = size; i > position; i--) {
+      elementos[i] = elementos[i - 1];
+    }
+    elementos[position] = elemento;
+    size++;
   }
 
   @Override
@@ -80,7 +97,6 @@ public class Vetor {
     } else {
       return "Array vazio";
     }
-
 
   }
 }
