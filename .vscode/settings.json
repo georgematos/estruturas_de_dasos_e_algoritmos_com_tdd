@@ -1,0 +1,10 @@
+{
+  "java.project.referencedLibraries": {
+    "include": [
+      "lib/**/*.jar",
+      "/home/georgematos/vscode-workspace/algoritmos_estruturas_de_dados_java/**/*.jar"
+    ],
+    "exclude": [
+    ]
+  }
+}
