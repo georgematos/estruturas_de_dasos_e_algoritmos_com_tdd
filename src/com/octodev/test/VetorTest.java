@@ -142,4 +142,50 @@ public class VetorTest {
 
   }
 
+  @Test
+  void deveLancarUmaExcecaoSeONovoTamanhoForMenorOuIgualAoAntigo() {
+    Vetor vetor = new Vetor(3);
+
+    try {
+      vetor.add("Ryu");
+      vetor.add("Ken");
+      vetor.add("Chun-li");
+
+      vetor.growTo(2);
+
+      vetor.add("Akuma");
+      vetor.add("Laura");
+      vetor.add("Cammy");
+
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      
+      assertEquals("O tamanho informado deve ser igual ou maior ao atual", e.getMessage());
+    }
+
+  }
+
+  @Test
+  void deveAumentarACapacidadeDoVetor() {
+    Vetor vetor = new Vetor(3);
+
+    try {
+      vetor.add("Ryu");
+      vetor.add("Ken");
+      vetor.add("Chun-li");
+
+      vetor.growTo(6);
+
+      vetor.add("Akuma");
+      vetor.add("Laura");
+      vetor.add("Cammy");
+
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      assertEquals("Você tentou exceder a capacidade do vetor", e.getMessage());
+    }
+
+    assertEquals(6, vetor.size());
+  }
+
 }

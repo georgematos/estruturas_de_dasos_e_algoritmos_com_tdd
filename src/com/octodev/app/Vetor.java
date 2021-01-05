@@ -72,12 +72,30 @@ public class Vetor {
   public void add(String elemento, int position) {
     if (position < 0 || position > elementos.length)
       throw new IllegalArgumentException("A posição requerida está fora dos limites do vetor");
-    
+
     for (int i = size; i > position; i--) {
       elementos[i] = elementos[i - 1];
     }
     elementos[position] = elemento;
     size++;
+  }
+
+  public void growTo(int newSize) {
+    if (newSize < size)
+      throw new IllegalArgumentException("O tamanho informado deve ser igual ou maior ao atual");
+    
+    String[] newVetor = new String[newSize];
+    newVetor = copyVetor(elementos, newVetor);
+    elementos = newVetor;
+    size = newSize;
+    
+  }
+
+  private String[] copyVetor(String[] elementos, String[] newVetor) {
+    for (int i = 0; i < size; i++) {
+      newVetor[i] = elementos[i];
+    }
+    return newVetor;
   }
 
   @Override
