@@ -188,4 +188,26 @@ public class VetorTest {
     assertEquals(6, vetor.size());
   }
 
+  @Test
+  void deveRemoverUmElementoDeUmaPosicaoDoVetor() {
+    Vetor vetor = new Vetor(6);
+
+    try {
+      vetor.add("Ryu");
+      vetor.add("Ken");
+      vetor.add("Chun-li");
+      vetor.add("Akuma");
+      vetor.add("Laura");
+      vetor.add("Sakura");
+
+      vetor.del(3);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      assertEquals(e.getMessage(), "Você tentou exceder a capacidade do vetor");
+    }
+
+    assertEquals(5, vetor.size());
+    assertEquals("Laura", vetor.get(3));
+  }
+
 }
