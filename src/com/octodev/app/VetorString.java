@@ -98,7 +98,7 @@ public class VetorString {
       elementos[position + 1] = null;
       position++;
     }
-    elementos = copyVetor(elementos, new String[5]);
+    elementos = copyVetor(elementos, new String[position]);
     size = elementos.length;
   }
 

@@ -1,15 +1,16 @@
 package com.octodev.app;
 
-public class VetorObject {
-
-  private Object[] elementos;
+@SuppressWarnings("all")
+public class VetorGeneric<T> {
+  
+  private T[] elementos;
   private int size = 0;
-
-  public VetorObject(int qtd) {
-    this.elementos = new Object[qtd];
+  
+  public VetorGeneric(int qtd) {
+    this.elementos = (T[]) new Object[qtd];
   }
 
-  public void add(Object elemento) throws Exception {
+  public void add(T elemento) throws Exception {
     if (size < elementos.length) {
       elementos[size] = elemento;
       size++;
@@ -36,20 +37,20 @@ public class VetorObject {
     return elementos.length;
   }
 
-  public boolean exists(Object object) {
+  public boolean exists(T T) {
     for (int i = 0; i < size; i++) {
-      if (elementos[i].equals(object)) {
+      if (elementos[i].equals(T)) {
         return true;
       }
     }
     return false;
   }
 
-  public Object get(int position) {
+  public T get(int position) {
     return elementos[position];
   }
 
-  public void add(Object elemento, int position) {
+  public void add(T elemento, int position) {
     if (position < 0 || position > elementos.length)
       throw new IllegalArgumentException("A posição requerida está fora dos limites do vetor");
 
@@ -64,7 +65,7 @@ public class VetorObject {
     if (newSize < size)
       throw new IllegalArgumentException("O tamanho informado deve ser igual ou maior ao atual");
 
-    Object[] newVetor = new Object[newSize];
+    T[] newVetor = (T[]) new Object[newSize];
     newVetor = copyVetor(elementos, newVetor);
     elementos = newVetor;
     size = newSize;
@@ -78,11 +79,11 @@ public class VetorObject {
       elementos[position + 1] = null;
       position++;
     }
-    elementos = copyVetor(elementos, new Object[position]);
+    elementos = copyVetor(elementos, (T[]) new Object[position]);
     size = elementos.length;
   }
 
-  private Object[] copyVetor(Object[] elementos, Object[] newVetor) {
+  private T[] copyVetor(T[] elementos, T[] newVetor) {
     for (int i = 0; i < size; i++) {
       if (elementos[i] != null)
         newVetor[i] = elementos[i];
