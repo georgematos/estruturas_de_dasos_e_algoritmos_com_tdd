@@ -3,22 +3,22 @@ package com.octodev.test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.octodev.app.Vetor;
+import com.octodev.app.VetorString;
 
 import org.junit.jupiter.api.Test;
 
-public class VetorTest {
+public class VetorStringTest {
 
   @Test
   void deveCriarUmVetorCom5Posicoes() {
-    Vetor vetor = new Vetor(5);
+    VetorString vetor = new VetorString(5);
 
     assertEquals(5, vetor.length());
   }
 
   @Test
   void deveAdicionar3ElementosAUmVetor() {
-    Vetor vetor = new Vetor(5);
+    VetorString vetor = new VetorString(5);
 
     try {
       vetor.add("Ryu");
@@ -34,7 +34,7 @@ public class VetorTest {
 
   @Test
   void deveLancarUmaExcecaoAoTentarExcederACapacidadeDoVetor() {
-    Vetor vetor = new Vetor(2);
+    VetorString vetor = new VetorString(2);
 
     try {
       vetor.add("Ryu");
@@ -49,7 +49,7 @@ public class VetorTest {
 
   @Test
   void deveRetornarUmNovoVetorComOsElementosQueCorrespondamABusca() {
-    Vetor vetor = new Vetor(6);
+    VetorString vetor = new VetorString(6);
 
     try {
       vetor.add("Ryu");
@@ -74,7 +74,7 @@ public class VetorTest {
 
   @Test
   void deveRetornarUmaExceptionSeNenhumElementoForEncontrado() {
-    Vetor vetor = new Vetor(6);
+    VetorString vetor = new VetorString(6);
 
     try {
       vetor.add("Ryu");
@@ -98,7 +98,7 @@ public class VetorTest {
 
   @Test
   void deveRetornarTrueSeOElementoForEncontrado() {
-    Vetor vetor = new Vetor(6);
+    VetorString vetor = new VetorString(6);
 
     try {
       vetor.add("Ryu");
@@ -120,7 +120,7 @@ public class VetorTest {
 
   @Test
   void deveAdicionarUmElementoAUmaDeterminadaPosicaoDoVetor() {
-    Vetor vetor = new Vetor(10);
+    VetorString vetor = new VetorString(10);
 
     try {
       vetor.add("Ryu");
@@ -144,7 +144,7 @@ public class VetorTest {
 
   @Test
   void deveLancarUmaExcecaoSeONovoTamanhoForMenorOuIgualAoAntigo() {
-    Vetor vetor = new Vetor(3);
+    VetorString vetor = new VetorString(3);
 
     try {
       vetor.add("Ryu");
@@ -167,7 +167,7 @@ public class VetorTest {
 
   @Test
   void deveAumentarACapacidadeDoVetor() {
-    Vetor vetor = new Vetor(3);
+    VetorString vetor = new VetorString(3);
 
     try {
       vetor.add("Ryu");
@@ -190,7 +190,7 @@ public class VetorTest {
 
   @Test
   void deveRemoverUmElementoDeUmaPosicaoDoVetor() {
-    Vetor vetor = new Vetor(6);
+    VetorString vetor = new VetorString(6);
 
     try {
       vetor.add("Ryu");
@@ -210,4 +210,35 @@ public class VetorTest {
     assertEquals("Laura", vetor.get(3));
   }
 
+  @Test
+  void deveLancarUmaIllegalArgExcpSeAPosicaoPassadaForMaiorTamanho() {
+    VetorString vetor = new VetorString(3);
+
+    try {
+      vetor.add("Ryu");
+      vetor.add("Ken");
+      vetor.add("Chun-li");
+
+      vetor.del(4);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      assertEquals(e.getMessage(), "Posição inválida");
+    }
+  }
+
+  @Test
+  void deveLancarUmaIllegalArgExcpSeAPosicaoPassadaForMenorQueTamanho() {
+    VetorString vetor = new VetorString(3);
+
+    try {
+      vetor.add("Ryu");
+      vetor.add("Ken");
+      vetor.add("Chun-li");
+
+      vetor.del(-1);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      assertEquals(e.getMessage(), "Posição inválida");
+    }
+  }
 }

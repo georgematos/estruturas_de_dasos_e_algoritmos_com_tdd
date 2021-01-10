@@ -1,17 +1,15 @@
 package com.octodev.app;
 
-import java.util.Arrays;
+public class VetorObject {
 
-public class Vetor {
-
-  private String[] elementos;
+  private Object[] elementos;
   private int size = 0;
 
-  public Vetor(int qtd) {
-    this.elementos = new String[qtd];
+  public VetorObject(int qtd) {
+    this.elementos = new Object[qtd];
   }
 
-  public void add(String elemento) throws Exception {
+  public void add(Object elemento) throws Exception {
     if (size < elementos.length) {
       elementos[size] = elemento;
       size++;
@@ -38,38 +36,20 @@ public class Vetor {
     return elementos.length;
   }
 
-  public String[] find(String text) throws IllegalArgumentException {
-
-    String[] result = new String[size];
-    int founded = 0;
-
+  public boolean exists(Object object) {
     for (int i = 0; i < size; i++) {
-      if (elementos[i].contains(text)) {
-        result[founded] = elementos[i];
-        founded++;
-      }
-    }
-    if (founded <= 0)
-      throw new IllegalArgumentException("Nenhum elemento foi encontrado");
-
-    return Arrays.copyOf(result, founded);
-
-  }
-
-  public boolean exists(String text) {
-    for (int i = 0; i < size; i++) {
-      if (elementos[i].equals(text)) {
+      if (elementos[i].equals(object)) {
         return true;
       }
     }
     return false;
   }
 
-  public String get(int position) {
+  public Object get(int position) {
     return elementos[position];
   }
 
-  public void add(String elemento, int position) {
+  public void add(Object elemento, int position) {
     if (position < 0 || position > elementos.length)
       throw new IllegalArgumentException("A posição requerida está fora dos limites do vetor");
 
@@ -84,24 +64,25 @@ public class Vetor {
     if (newSize < size)
       throw new IllegalArgumentException("O tamanho informado deve ser igual ou maior ao atual");
 
-    String[] newVetor = new String[newSize];
+    Object[] newVetor = new Object[newSize];
     newVetor = copyVetor(elementos, newVetor);
     elementos = newVetor;
     size = newSize;
   }
 
   public void del(int position) {
-
+    if (position < 0 || position > size)
+      throw new IllegalArgumentException("Posição inválida");
     for (int i = position; i < size - 1; i++) {
       elementos[position] = elementos[position + 1];
       elementos[position + 1] = null;
       position++;
     }
-    elementos = copyVetor(elementos, new String[5]);
+    elementos = copyVetor(elementos, new Object[5]);
     size = elementos.length;
   }
 
-  private String[] copyVetor(String[] elementos, String[] newVetor) {
+  private Object[] copyVetor(Object[] elementos, Object[] newVetor) {
     for (int i = 0; i < size; i++) {
       if (elementos[i] != null)
         newVetor[i] = elementos[i];
